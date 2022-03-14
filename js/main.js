@@ -1,3 +1,4 @@
+// Array contenente le info di tutti i post
 const posts = [
     {
         "id": 1,
@@ -94,18 +95,50 @@ function showPosts(listPosts, wrapper){
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <a id="like-button-${element["id"]}" class="like-button  js-like-button" data-postid="1">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">${element["likes"]}</b> persone
+                        Piace a <b id="like-counter-${element["id"]}" class="js-likes-counter">${element["likes"]}</b> persone
                     </div>
                 </div> 
             </div>            
         </div>`;
-        wrapper.innerHTML += post;
-    });
 
+        // Aggiungo in coda il post appena creato
+        wrapper.innerHTML += post;
+
+        // Richiamo con un timeout la funzione per aggiungere o rimuovere i like
+        setTimeout(() => {
+            addLike(element["id"], element["likes"]);
+        }, 250);
+    });
+}
+
+
+/**
+ *  Questa funzione permette l'aggiunta o la rimozione dei like ai post. In sostanza, aggiunge o rimuove una classe css 'liked' e incrementa o decrementa il contatore dei like.
+ * @param {*} postId        ID del post al quale vogliamo mettere o togliere il like
+ * @param {*} numberOfLikes Numero di like già presenti per quel determinato post
+ */
+function addLike(postId, numberOfLikes){
+    // Richiamo tramite ID il button 'mi-piace' del post corrente
+    const likeBTN = document.getElementById(`like-button-${postId}`);
+
+    // Al click di tale button, esegui la seguente funzione
+    likeBTN.addEventListener('click', () => {
+        // Innanzitutto verifico quanti like sono già presenti per il post
+        const outputLikes = document.getElementById(`like-counter-${postId}`);
+
+        // Se la classe 'liked' non è presente, la aggiungo e incremento il contatore dei like
+        if (likeBTN.classList.toggle('like-button--liked')){
+            outputLikes.innerHTML = ++numberOfLikes;
+        } else{
+            outputLikes.innerHTML = --numberOfLikes;
+        }
+
+        console.log(`id post: ${postId}, numero di like: ${numberOfLikes}`);
+    });
 }
