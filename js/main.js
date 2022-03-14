@@ -55,3 +55,57 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
+
+// Vado a prendermi tramite ID il container di tutti i post
+const wrapper = document.getElementById('container');
+
+// Richiamo la funzione che visualizza i post
+showPosts(posts, wrapper);
+
+
+
+
+
+/************************************FUNCTIONS*******************************************/
+/**
+ *  Questa funzione mostra tutti i post nella pagina principale.
+ * @param {*} listPosts E' l'array che contiene le informazioni riguado tutti i post
+ * @param {*} wrapper   E' il container dove voglio visualizzare i post
+ */
+function showPosts(listPosts, wrapper){
+    listPosts.forEach(element => {
+        const post =
+        `<div class="post" id="post-${element["id"]}">
+            <div class="post__header">
+                <div class="post-meta">                    
+                    <div class="post-meta__icon">
+                        <img class="profile-pic" src="${element["author"]["image"]}" alt="${element["author"]["name"]}">                    
+                    </div>
+                    <div class="post-meta__data">
+                        <div class="post-meta__author">${element["author"]["name"]}</div>
+                        <div class="post-meta__time">${element["created"]}</div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="post__text">${element["content"]}</div>
+            <div class="post__image">
+                <img src="${element["media"]}" alt="">
+            </div>
+            <div class="post__footer">
+                <div class="likes js-likes">
+                    <div class="likes__cta">
+                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                            <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                            <span class="like-button__label">Mi Piace</span>
+                        </a>
+                    </div>
+                    <div class="likes__counter">
+                        Piace a <b id="like-counter-1" class="js-likes-counter">${element["likes"]}</b> persone
+                    </div>
+                </div> 
+            </div>            
+        </div>`;
+        wrapper.innerHTML += post;
+    });
+
+}
