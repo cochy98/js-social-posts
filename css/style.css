@@ -16,6 +16,10 @@ h1 {
     color: white;
 }
 
+.d-none{
+    display: none;
+}
+
 .main-title {
     text-align: center;
     margin: 24px 0;

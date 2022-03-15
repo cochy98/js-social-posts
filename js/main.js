@@ -113,6 +113,7 @@ function showPosts(listPosts, wrapper){
         // Richiamo con un timeout la funzione per aggiungere o rimuovere i like
         setTimeout(() => {
             addLike(element["id"], element["likes"]);
+            viewTemporaryProfilePicture (element["id"], element["author"]["image"], element["author"]["name"]);
         }, 250);
     });
 }
@@ -141,4 +142,30 @@ function addLike(postId, numberOfLikes){
 
         console.log(`id post: ${postId}, numero di like: ${numberOfLikes}`);
     });
+}
+
+/**
+ *  Questa funzione controlla se per l'utente del post corrente è presente un'immagine profilo, in caso contrario ne crea una di default.
+ * @param {*} postId            ID del post corrente
+ * @param {*} profilePicture    Indirizzo dell'immagine profilo, se non presente avrà valore null
+ * @param {*} userName          Nome utente del post corrente
+ */
+function viewTemporaryProfilePicture (postId, profilePicture, userName){
+    // Se non trovo un'immagine profilo
+    if (profilePicture == null){
+        // Spezzo la stringa rappresentante il nome completo
+        userName = userName.split(' ');
+        console.log(userName);
+        // Mi richiamo tramite una query il tag dell'immagine profilo
+        const imgProfile = document.querySelector(`div#post-${postId} img.profile-pic`);
+        // E gli aggiungo la classe 'd-none'
+        imgProfile.classList.add('d-none');
+        // Mi richiamo tramite una query il container dell'immagine profilo
+        const imgProfileContainer = document.querySelector(`div#post-${postId} div.post-meta__icon`);
+        // E creo al suo interno un'immagine profilo di default
+        imgProfileContainer.innerHTML =
+        `<div class="profile-pic-default">
+            <span>${userName[0].charAt(0)}${userName[1].charAt(0)}</span>
+        </div>`;
+    }
 }
