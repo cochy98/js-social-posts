@@ -54,6 +54,50 @@ const posts = [
         },
         "likes": 95,
         "created": "2021-03-05"
+    },
+    {
+        "id": 6,
+        "content": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
+        "media": "https://unsplash.it/600/400?image=538",
+        "author": {
+            "name": "Paolo Sainato",
+            "image": "https://unsplash.it/300/300?image=39"
+        },
+        "likes": 91,
+        "created": "2021-06-05"
+    },
+    {
+        "id": 7,
+        "content": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
+        "media": "https://unsplash.it/600/400?image=539",
+        "author": {
+            "name": "Giovanni Ferraioli",
+            "image": "https://unsplash.it/300/300?image=33"
+        },
+        "likes": 26,
+        "created": "2021-03-05"
+    },
+    {
+        "id": 8,
+        "content": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
+        "media": "https://unsplash.it/600/400?image=541",
+        "author": {
+            "name": "Cristian De Sio",
+            "image": "https://unsplash.it/300/300?image=40"
+        },
+        "likes": 77,
+        "created": "2021-05-01"
+    },
+    {
+        "id": 9,
+        "content": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
+        "media": "https://unsplash.it/600/400?image=560",
+        "author": {
+            "name": "Cosmo Ferrigno",
+            "image": null
+        },
+        "likes": 95,
+        "created": "2021-07-05"
     }
 ];
 
