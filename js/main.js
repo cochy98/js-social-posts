@@ -122,33 +122,34 @@ showPosts(posts, wrapper);
  */
 function showPosts(listPosts, wrapper){
     listPosts.forEach(element => {
+        const {id, content, media, author, likes, created} = element;
         const post =
-        `<div class="post" id="post-${element["id"]}">
+        `<div class="post" id="post-${id}">
             <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src="${element["author"]["image"]}" alt="${element["author"]["name"]}">                    
+                        <img class="profile-pic" src="${author["image"]}" alt="${author["name"]}">                    
                     </div>
                     <div class="post-meta__data">
-                        <div class="post-meta__author">${element["author"]["name"]}</div>
-                        <div class="post-meta__time">${element["created"]}</div>
+                        <div class="post-meta__author">${author["name"]}</div>
+                        <div class="post-meta__time">${created}</div>
                     </div>                    
                 </div>
             </div>
-            <div class="post__text">${element["content"]}</div>
+            <div class="post__text">${content}</div>
             <div class="post__image">
-                <img src="${element["media"]}" alt="">
+                <img src="${media}" alt="">
             </div>
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a id="like-button-${element["id"]}" class="like-button  js-like-button" data-postid="1">
+                        <a id="like-button-${id}" class="like-button  js-like-button" data-postid="1">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-${element["id"]}" class="js-likes-counter">${element["likes"]}</b> persone
+                        Piace a <b id="like-counter-${id}" class="js-likes-counter">${likes}</b> persone
                     </div>
                 </div> 
             </div>            
