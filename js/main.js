@@ -101,6 +101,9 @@ const posts = [
     }
 ];
 
+// Array dove vado a memorizzare gli ID dei post ai quali l'utente mette like
+const likedId = [];
+
 // Vado a prendermi tramite ID il container di tutti i post
 const wrapper = document.getElementById('container');
 
@@ -156,7 +159,7 @@ function showPosts(listPosts, wrapper){
 
         // Richiamo con un timeout la funzione per aggiungere o rimuovere i like
         setTimeout(() => {
-            addLike(element["id"], element["likes"]);
+            addLike(element["id"], element["likes"], likedId);
             viewTemporaryProfilePicture (element["id"], element["author"]["image"], element["author"]["name"]);
         }, 250);
     });
@@ -168,7 +171,7 @@ function showPosts(listPosts, wrapper){
  * @param {*} postId        ID del post al quale vogliamo mettere o togliere il like
  * @param {*} numberOfLikes Numero di like già presenti per quel determinato post
  */
-function addLike(postId, numberOfLikes){
+function addLike(postId, numberOfLikes, likedArray){
     // Richiamo tramite ID il button 'mi-piace' del post corrente
     const likeBTN = document.getElementById(`like-button-${postId}`);
 
@@ -180,11 +183,16 @@ function addLike(postId, numberOfLikes){
         // Se la classe 'liked' non è presente, la aggiungo e incremento il contatore dei like
         if (likeBTN.classList.toggle('like-button--liked')){
             outputLikes.innerHTML = ++numberOfLikes;
+            // Inserisco l'ID del post dentro ad un'array
+            likedArray.push(postId);
         } else{
             outputLikes.innerHTML = --numberOfLikes;
+            // Rimuovo l'ID del post dall'array, conoscendo la sua posizione tramite 'indexOf'
+            likedArray.splice(likedArray.indexOf(postId), 1);
         }
 
         console.log(`id post: ${postId}, numero di like: ${numberOfLikes}`);
+        console.log(likedArray);
     });
 }
 
@@ -199,7 +207,7 @@ function viewTemporaryProfilePicture (postId, profilePicture, userName){
     if (profilePicture == null){
         // Spezzo la stringa rappresentante il nome completo
         userName = userName.split(' ');
-        console.log(userName);
+        //console.log(userName);
         // Mi richiamo tramite una query il tag dell'immagine profilo
         const imgProfile = document.querySelector(`div#post-${postId} img.profile-pic`);
         // E gli aggiungo la classe 'd-none'
