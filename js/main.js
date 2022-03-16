@@ -122,7 +122,11 @@ showPosts(posts, wrapper);
  */
 function showPosts(listPosts, wrapper){
     listPosts.forEach(element => {
+        // Creo la destrutturazione dell'oggetto 'element'
         const {id, content, media, author, likes, created} = element;
+
+        // Converto la data in formato italiano
+        const dateCreation = created.split('-').reverse().join('-');
         const post =
         `<div class="post" id="post-${id}">
             <div class="post__header">
@@ -132,7 +136,7 @@ function showPosts(listPosts, wrapper){
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${author["name"]}</div>
-                        <div class="post-meta__time">${created}</div>
+                        <div class="post-meta__time">${dateCreation}</div>
                     </div>                    
                 </div>
             </div>
